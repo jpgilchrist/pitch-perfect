@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class RecordedAudio {
+class RecordedAudio: Printable {
     
     var filePathURL: NSURL!
     var title: String!
@@ -23,6 +23,12 @@ class RecordedAudio {
     var audioFile: AVAudioFile {
         get {
             return AVAudioFile(forReading: self.filePathURL, error: nil)
+        }
+    }
+    
+    var description: String {
+        get {
+            return "\(title)"
         }
     }
 }

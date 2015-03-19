@@ -17,6 +17,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var startRecordingButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var libraryBarButton: UIBarButtonItem!
     
     @IBOutlet weak var recordingStatusLabel: UILabel!
     
@@ -30,6 +31,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             }
             stopRecordingButton.hidden = !self.recordingStatus
             startRecordingButton.enabled = !self.recordingStatus
+            libraryBarButton.enabled = !self.recordingStatus
         }
     }
 

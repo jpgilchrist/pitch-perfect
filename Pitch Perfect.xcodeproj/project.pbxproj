@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB44D0E31ABB04A4009867D9 /* DisplayRecordingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB44D0E21ABB04A4009867D9 /* DisplayRecordingsTableViewController.swift */; };
 		FB4B9D1B1AAB3AEA003240A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4B9D1A1AAB3AEA003240A3 /* AppDelegate.swift */; };
 		FB4B9D1D1AAB3AEA003240A3 /* RecordSoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4B9D1C1AAB3AEA003240A3 /* RecordSoundsViewController.swift */; };
 		FB4B9D201AAB3AEA003240A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4B9D1E1AAB3AEA003240A3 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB44D0E21ABB04A4009867D9 /* DisplayRecordingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayRecordingsTableViewController.swift; path = ../DisplayRecordingsTableViewController.swift; sourceTree = "<group>"; };
 		FB4B9D151AAB3AEA003240A3 /* Pitch Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4B9D191AAB3AEA003240A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB4B9D1A1AAB3AEA003240A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				FB4B9D1C1AAB3AEA003240A3 /* RecordSoundsViewController.swift */,
 				FB4B9D3A1AAB8F3B003240A3 /* PlaySoundsViewController.swift */,
 				FB4B9D3E1AABF5C0003240A3 /* RecordedAudio.swift */,
+				FB44D0E21ABB04A4009867D9 /* DisplayRecordingsTableViewController.swift */,
 				FB4B9D1E1AAB3AEA003240A3 /* Main.storyboard */,
 				FB4B9D211AAB3AEA003240A3 /* Images.xcassets */,
 				FB4B9D231AAB3AEA003240A3 /* LaunchScreen.xib */,
@@ -226,6 +229,7 @@
 				FB4B9D3F1AABF5C0003240A3 /* RecordedAudio.swift in Sources */,
 				FB4B9D1D1AAB3AEA003240A3 /* RecordSoundsViewController.swift in Sources */,
 				FB4B9D3B1AAB8F3B003240A3 /* PlaySoundsViewController.swift in Sources */,
+				FB44D0E31ABB04A4009867D9 /* DisplayRecordingsTableViewController.swift in Sources */,
 				FB4B9D1B1AAB3AEA003240A3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
