@@ -23,7 +23,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     // watching this to auto set associated variables in one location
     var recordingStatus: Bool = false {
         didSet {
-            recordingStatusLabel.hidden = !self.recordingStatus
+            if recordingStatus {
+                recordingStatusLabel.text = "Recording in progress."
+            } else {
+                recordingStatusLabel.text = "Tap to record."
+            }
             stopRecordingButton.hidden = !self.recordingStatus
             startRecordingButton.enabled = !self.recordingStatus
         }
@@ -45,22 +49,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         if !recordingStatus {
             recordingStatus = true
             
-            let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            let directoryPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+            let recordingInfo = RecordingInfo(pathToDirectory: directoryPath);
             
-            let currentDateTime = NSDate()
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "ddMMyyyy-HHmmss"
-            let recordingName = formatter.stringFromDate(currentDateTime)+".wav"
-            let pathArray = [dirPath, recordingName]
-            let filePath = NSURL.fileURLWithPathComponents(pathArray)
-            println(filePath)
-            
-            // had an issue with AVAudioSessionCategoryPlayAndRecord so I toggle session categry between record and play
             session.setCategory(AVAudioSessionCategoryRecord, error: nil)
-            //session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
-
             
-            audioRecorder = AVAudioRecorder(URL: filePath, settings: nil, error: nil)
+            audioRecorder = AVAudioRecorder(URL: recordingInfo.uniqueFileURL!, settings: nil, error: nil)
             audioRecorder.delegate = self
             audioRecorder.meteringEnabled = true
             audioRecorder.prepareToRecord()
@@ -79,14 +73,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
         if flag {
-            //toggle sessino category to playback so it works on the play view
-            
+            //toggle session category to playback so it works on the play view
             session.setCategory(AVAudioSessionCategoryPlayback, error: nil)
-            //session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
             
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathURL = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            recordedAudio = RecordedAudio(title: recorder.url.lastPathComponent!, path: recorder.url);
             
             performSegueWithIdentifier("Show Player", sender: recordedAudio)
 
@@ -101,6 +91,31 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         default:
             println("unsupported segque \(segue.identifier)")
         }
+    }
+    
+    struct RecordingInfo {
+        private var pathToDirectory: String
+        
+        var dateFormat = "ddMMyyyy-HHmmss"
+        
+        init(pathToDirectory: String) {
+            self.pathToDirectory = pathToDirectory;
+        }
+        
+        var uniqueFileURL : NSURL? {
+            get {
+                let currentDateTime = NSDate()
+                
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = dateFormat
+                
+                let uniqueName = formatter.stringFromDate(currentDateTime)+".wav"
+
+                return NSURL.fileURLWithPathComponents([pathToDirectory, uniqueName])
+            }
+        }
+        
+        
     }
 }
 
