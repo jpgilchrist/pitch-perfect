@@ -104,7 +104,6 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.connect(audioPitchEffect, to: audioDelayEffect, format: receivedAudio.audioFile.processingFormat)
         audioEngine.connect(audioDelayEffect, to: audioReverbEffect, format: receivedAudio.audioFile.processingFormat)
         audioEngine.connect(audioReverbEffect, to: audioEngine.outputNode, format: receivedAudio.audioFile.processingFormat)
-//        audioEngine.connect(audioPitchEffect, to: audioEngine.mainMixerNode, format: receivedAudio.audioFile.processingFormat)
         
         audioPlayer.scheduleFile(receivedAudio.audioFile, atTime: nil, completionHandler: nil)
         
